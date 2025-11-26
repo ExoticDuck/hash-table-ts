@@ -8,11 +8,16 @@ type Options = {
 };
 
 export default function createHashTable<K extends string | number, V>(
-  options: Options
+  options: Options = {
+    loadFactor: 0.75,
+    initialCapacity: 16,
+    collisionMethod: "chaining",
+  }
 ) {
-  if (options.collisionMethod === "chaining") {
-    return createChainingHashTable<K, V>(options);
-  } else {
-    return createLinearHashTable<K, V>(options);
+  switch (options.collisionMethod) {
+    case "chaining":
+      return createChainingHashTable<K, V>(options);
+    case "linear":
+      return createLinearHashTable<K, V>(options);
   }
 }
