@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "test": "tsx --test src/index.test.ts",
-    "test:hash": "tsx --test src/hash.test.ts"
+    "test": "tsx --test"
   },
   "devDependencies": {
     "@types/node": "^24.10.0",
