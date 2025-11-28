@@ -1,14 +1,9 @@
 import createChainingHashTable from "./chainingHashTable";
 import createLinearHashTable from "./linearHashTable";
-
-type Options = {
-  initialCapacity: number;
-  loadFactor: number;
-  collisionMethod: "chaining" | "linear";
-};
+import { OptionsWithMethod } from "./types";
 
 export default function createHashTable<K extends string | number, V>(
-  options: Options = {
+  options: OptionsWithMethod = {
     loadFactor: 0.75,
     initialCapacity: 16,
     collisionMethod: "chaining",
@@ -16,8 +11,14 @@ export default function createHashTable<K extends string | number, V>(
 ) {
   switch (options.collisionMethod) {
     case "chaining":
-      return createChainingHashTable<K, V>(options);
+      return createChainingHashTable<K, V>({
+        loadFactor: options.loadFactor,
+        initialCapacity: options.initialCapacity,
+      });
     case "linear":
-      return createLinearHashTable<K, V>(options);
+      return createLinearHashTable<K, V>({
+        loadFactor: options.loadFactor,
+        initialCapacity: options.initialCapacity,
+      });
   }
 }

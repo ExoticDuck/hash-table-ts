@@ -1,11 +1,5 @@
 import { hash } from "./hash";
-import { Entry, HashTable } from "./types";
-
-type Options = {
-  initialCapacity: number;
-  loadFactor: number;
-  collisionMethod: "chaining" | "linear";
-};
+import { Entry, HashTable, Options } from "./types";
 
 type Bucket<K, V> = Entry<K, V> | undefined | null;
 
@@ -132,6 +126,7 @@ export default function createLinearHashTable<K extends string | number, V>(
 
   function clear(): void {
     buckets = Array.from({ length: options.initialCapacity }, () => undefined);
+    capacity = options.initialCapacity;
     countOfElements = 0;
   }
 

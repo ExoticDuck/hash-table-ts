@@ -11,3 +11,12 @@ export type Entry<K, V> = {
   readonly key: K;
   readonly value: V;
 };
+
+export type OptionsWithMethod = Options & {
+  collisionMethod: "chaining" | "linear";
+};
+
+export type Options = {
+  initialCapacity: number;
+  loadFactor: number;
+};
